@@ -19,40 +19,57 @@ const Index = () => {
 
   return (
     <StoreLayout>
-      {/* Hero */}
-      <section className="gradient-hero text-primary-foreground overflow-hidden">
-        <div className="container mx-auto px-4 py-16 lg:py-24">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+      {/* Hero with Video */}
+      <section className="relative min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden">
+        {/* Background Video */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+            poster="https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=1920&h=1080&fit=crop"
+          >
+            <source src="https://cdn.pixabay.com/video/2020/05/25/40130-424930032_large.mp4" type="video/mp4" />
+          </video>
+          {/* Dark gradient overlay for readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-foreground/85 via-foreground/70 to-foreground/40" />
+          {/* Teal tint overlay */}
+          <div className="absolute inset-0 gradient-hero opacity-60" />
+        </div>
+
+        {/* Content */}
+        <div className="container mx-auto px-4 py-20 lg:py-28 relative z-10">
+          <div className="max-w-2xl">
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-              <span className="inline-block px-3 py-1 rounded-full bg-primary-foreground/15 text-sm font-medium mb-6">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-primary-foreground/15 backdrop-blur-sm text-sm font-medium mb-6 text-primary-foreground border border-primary-foreground/20">
                 🇰🇪 Kenya's #1 Tech Store
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-primary-foreground drop-shadow-lg">
                 Premium Tech,<br />Delivered to <span className="text-accent">Your Door</span>
               </h1>
-              <p className="text-lg text-primary-foreground/80 mb-8 max-w-lg">
+              <p className="text-lg text-primary-foreground/85 mb-8 max-w-lg leading-relaxed drop-shadow">
                 Shop the latest smartphones, printers, smart TVs, and security systems from world-class brands at unbeatable prices.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link to="/products">
-                  <Button size="lg" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-bold rounded-xl px-8 h-12">
+                  <Button size="lg" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-bold rounded-xl px-8 h-13 text-base shadow-lg">
                     Shop Now <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
                 <Link to="/contact">
-                  <Button size="lg" variant="outline" className="border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 rounded-xl px-8 h-12">
+                  <Button size="lg" variant="outline" className="border-2 border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/15 backdrop-blur-sm rounded-xl px-8 h-13 text-base">
                     Contact Us
                   </Button>
                 </Link>
               </div>
             </motion.div>
-            <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.2 }}
-              className="hidden lg:block">
-              <img src="https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=600&h=500&fit=crop"
-                alt="Tech products" className="rounded-2xl shadow-2xl w-full object-cover max-h-[480px]" />
-            </motion.div>
           </div>
         </div>
+
+        {/* Bottom gradient fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent z-10" />
       </section>
 
       {/* Business Segments */}
